@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-  <meta name="theme-color" content="#050509"/>
+  <meta name="theme-color" content="#060610"/>
   <meta name="mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
@@ -12,8 +12,10 @@
   <link rel="manifest" href="/manifest.json"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="preconnect" href="https://i.ytimg.com" crossorigin/>
+  <link rel="dns-prefetch" href="https://youtube.com"/>
+  <link rel="dns-prefetch" href="https://music.youtube.com"/>
   <link rel="stylesheet" href="/style.css"/>
 </head>
 <body>
@@ -24,7 +26,7 @@
   <div class="hd-inner">
     <div class="hd-left">
       <div class="logo">
-        <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="8" fill="url(#lg)"/><path d="M8 20V13M12 20V9M16 20V15M20 20V11" stroke="white" stroke-width="2.2" stroke-linecap="round"/><defs><linearGradient id="lg" x1="0" y1="0" x2="28" y2="28"><stop stop-color="#7C3AED"/><stop offset="1" stop-color="#DB2777"/></defs></svg>
+        <svg viewBox="0 0 30 30" fill="none"><rect width="30" height="30" rx="9" fill="url(#lg2)"/><path d="M8 22V14M12 22V8M16 22V16M22 22V11" stroke="white" stroke-width="2.3" stroke-linecap="round"/><defs><linearGradient id="lg2" x1="0" y1="0" x2="30" y2="30"><stop stop-color="#6D28D9"/><stop offset="1" stop-color="#EC4899"/></defs></svg>
       </div>
       <span class="logo-name">SoundWave</span>
     </div>
@@ -43,23 +45,23 @@
 
 <!-- ══════════ HOME ══════════ -->
 <section id="pg-home" class="pg active">
-
   <div class="chips-row">
     <div class="chips" id="mood-chips">
       <button class="chip active" data-mood="santai">🎵 Santai</button>
       <button class="chip" data-mood="fokus">🎯 Fokus</button>
       <button class="chip" data-mood="workout">💪 Workout</button>
       <button class="chip" data-mood="party">🎉 Party</button>
+      <button class="chip" data-mood="kpop">🇰🇷 K-Pop</button>
       <button class="chip" data-mood="jazz">🎷 Jazz</button>
-      <button class="chip" data-mood="remix">🎛 Remix</button>
       <button class="chip" data-mood="pop">⭐ Pop</button>
-      <button class="chip" data-mood="rnb">🎤 R&B</button>
+      <button class="chip" data-mood="rnb">🎤 R&amp;B</button>
       <button class="chip" data-mood="anime">🎌 Anime</button>
+      <button class="chip" data-mood="gaming">🎮 Gaming</button>
     </div>
   </div>
 
   <!-- Hero Banner -->
-  <div class="px">
+  <div class="px" style="margin-top:14px">
     <div class="hero" id="hero">
       <div class="hero-bg" id="hero-bg"></div>
       <div class="hero-scrim"></div>
@@ -83,15 +85,15 @@
   </div>
 
   <!-- Quick Picks -->
-  <div class="sec px">
+  <div class="sec px" style="margin-top:20px">
     <div class="sec-hd">
-      <h3 class="sec-title">Panggilan Cepat</h3>
+      <h3 class="sec-title">Pilihan Cepat</h3>
       <button class="sec-btn" id="btn-play-all">Putar Semua</button>
     </div>
     <div id="qp-grid" class="qp-grid"></div>
   </div>
 
-  <!-- Mood Cards -->
+  <!-- Mood Songs -->
   <div class="sec">
     <div class="sec-hd px">
       <h3 class="sec-title" id="mood-title">Pilihan Santai</h3>
@@ -99,179 +101,262 @@
     <div id="mood-grid" class="card-grid px"></div>
   </div>
 
-  <!-- Recently Played -->
-  <div class="sec" id="rec-sec" style="display:none">
-    <div class="sec-hd px">
-      <h3 class="sec-title">🕐 Terakhir Diputar</h3>
-    </div>
-    <div class="hscroll-wrap">
-      <div id="rec-scroll" class="hscroll"></div>
-    </div>
-  </div>
-
   <!-- Trending -->
-  <div class="sec">
+  <div class="sec" style="margin-bottom:10px">
     <div class="sec-hd px">
-      <h3 class="sec-title">🔥 Trending</h3>
-      <span class="live-pill"><span class="live-dot"></span>Live</span>
+      <h3 class="sec-title">Trending</h3>
+      <div class="live-pill"><div class="live-dot"></div>LIVE</div>
     </div>
     <div id="trend-grid" class="card-grid px"></div>
   </div>
 
+  <!-- Recently Played -->
+  <div class="sec" id="rec-sec" style="display:none">
+    <div class="sec-hd px">
+      <h3 class="sec-title">Baru Diputar</h3>
+    </div>
+    <div class="hscroll-wrap"><div id="rec-scroll" class="hscroll" style="gap:10px"></div></div>
+  </div>
 </section>
 
 <!-- ══════════ SEARCH ══════════ -->
 <section id="pg-search" class="pg">
+  <div class="px" style="padding-top:14px;padding-bottom:6px">
+    <div class="search-wrap" id="search-wrap">
+      <svg class="s-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="search-input" type="search" placeholder="Cari lagu, artis, atau ketik lirik..." autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <button class="s-clear hidden" id="search-clear" aria-label="Hapus">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
 
-  <div class="px" style="padding-top:14px">
-    <div class="search-wrap">
-      <svg class="s-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input id="search-input" type="search" placeholder="Cari lagu, artis, atau album" autocomplete="off" enterkeyhint="search" spellcheck="false"/>
-      <button id="search-clear" class="s-clear hidden"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <!-- Search type indicator -->
+    <div id="search-type-bar" class="search-type-bar hidden">
+      <span id="search-type-label"></span>
+    </div>
+
+    <!-- Filter chips -->
+    <div class="chips-row" style="padding:10px 0 4px">
+      <div class="chips" id="search-filter-chips">
+        <button class="chip active" data-filter="all">Semua</button>
+        <button class="chip" data-filter="songs">Lagu</button>
+        <button class="chip" data-filter="lyrics">Lirik Match</button>
+      </div>
     </div>
   </div>
 
-  <div class="chips-row" style="padding-top:10px">
-    <div class="chips">
-      <button class="chip active" data-filter="all">Semua</button>
-      <button class="chip" data-filter="song">Lagu</button>
-      <button class="chip" data-filter="video">Video</button>
-      <button class="chip" data-filter="album">Album</button>
+  <!-- Search history -->
+  <div id="s-history" class="px" style="display:none">
+    <div class="search-hist-hd">
+      <span>Pencarian Terbaru</span>
+      <button id="clear-hist-btn">Hapus</button>
     </div>
+    <div id="s-hist-list"></div>
   </div>
 
   <div id="s-empty" class="empty-state">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <p>Cari lagu, artis, atau album</p>
-  </div>
-  <div id="s-loading" class="hidden px" style="padding-top:12px"></div>
-  <div id="s-results" class="hidden">
-    <div id="s-grid" class="card-grid px" style="padding-top:12px"></div>
-    <div id="s-sentinel" style="height:1px"></div>
-  </div>
-  <div id="s-noresult" class="empty-state hidden">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-    <p>Tidak ada hasil ditemukan</p>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <p style="font-weight:700;font-size:.9rem">Cari apa saja</p>
+    <p style="font-size:.78rem;color:var(--t3)">Judul lagu, nama artis, atau ketik penggalan lirik</p>
   </div>
 
+  <div id="s-loading" class="px hidden"></div>
+
+  <div id="s-results" class="px hidden">
+    <div id="s-grid"></div>
+    <div id="s-sentinel" style="height:1px"></div>
+  </div>
+
+  <div id="s-noresult" class="empty-state hidden">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M11 8v4M11 16h.01"/></svg>
+    <p>Tidak ditemukan</p>
+    <p style="font-size:.75rem;color:var(--t3)" id="s-noresult-tip">Coba kata kunci lain atau ketik lebih banyak lirik</p>
+  </div>
 </section>
 
 <!-- ══════════ LIBRARY ══════════ -->
 <section id="pg-library" class="pg">
-  <div class="px" style="padding-top:20px">
-    <h2 class="page-title">Pustaka Saya</h2>
-  </div>
-  <div class="lib-tabs px">
-    <button class="ltab active" data-tab="pl">Daftar Putar</button>
-    <button class="ltab" data-tab="songs">Lagu</button>
-    <button class="ltab" data-tab="albums">Album</button>
-  </div>
-  <div id="lt-pl" class="ltab-panel px active">
-    <div class="lib-specials">
-      <div class="lib-sp" id="lsp-liked">
-        <div class="lib-sp-ico liked-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-        <div class="lib-sp-info"><span class="lib-sp-name">Disukai</span><span class="lib-sp-cnt" id="liked-cnt">0 lagu</span></div>
-      </div>
-      <div class="lib-sp" id="lsp-history">
-        <div class="lib-sp-ico hist-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14.5"/></svg></div>
-        <div class="lib-sp-info"><span class="lib-sp-name">Riwayat</span><span class="lib-sp-cnt" id="hist-cnt">0 lagu</span></div>
-      </div>
-      <div class="lib-sp" id="lsp-top50">
-        <div class="lib-sp-ico top-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
-        <div class="lib-sp-info"><span class="lib-sp-name">Top 50 Saya</span><span class="lib-sp-cnt">Dari riwayat</span></div>
+  <div class="px" style="padding-top:16px">
+    <h2 class="page-title">Pustaka</h2>
+    <div class="lib-tabs">
+      <button class="ltab active" data-tab="specials">Koleksi</button>
+      <button class="ltab" data-tab="playlist">Playlist</button>
+      <button class="ltab" data-tab="songs">Disukai</button>
+    </div>
+    <div id="lt-specials" class="ltab-panel active">
+      <div class="lib-specials">
+        <div class="lib-sp" id="lsp-liked">
+          <div class="lib-sp-ico liked-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <div class="lib-sp-info"><span class="lib-sp-name">Lagu Disukai</span><span class="lib-sp-cnt" id="liked-cnt">0 lagu</span></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:var(--t4)"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+        <div class="lib-sp" id="lsp-history">
+          <div class="lib-sp-ico hist-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14.5"/></svg></div>
+          <div class="lib-sp-info"><span class="lib-sp-name">Riwayat Putar</span><span class="lib-sp-cnt" id="hist-cnt">0 lagu</span></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:var(--t4)"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+        <div class="lib-sp" id="lsp-top50">
+          <div class="lib-sp-ico top-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <div class="lib-sp-info"><span class="lib-sp-name">Top 50 Diputar</span><span class="lib-sp-cnt">Dari riwayatmu</span></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:var(--t4)"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
       </div>
     </div>
-    <div class="divider"></div>
-    <div id="pl-list"></div>
-    <button class="new-pl-btn" id="btn-new-pl">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      Buat Playlist Baru
-    </button>
-  </div>
-  <div id="lt-songs" class="ltab-panel px">
-    <div id="lib-songs"></div>
-    <div id="lib-songs-empty" class="lib-empty hidden"><p>Belum ada lagu disukai</p></div>
-  </div>
-  <div id="lt-albums" class="ltab-panel px">
-    <div class="lib-empty"><p>Koleksi album segera hadir</p></div>
+    <div id="lt-playlist" class="ltab-panel">
+      <button class="new-pl-btn" id="btn-new-pl">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        Playlist Baru
+      </button>
+      <div class="divider"></div>
+      <div id="pl-list" class="song-list"></div>
+    </div>
+    <div id="lt-songs" class="ltab-panel">
+      <div id="lib-songs" class="song-list"></div>
+      <div id="lib-songs-empty" class="lib-empty hidden"><p>Belum ada lagu disukai</p></div>
+    </div>
   </div>
 </section>
 
 <!-- ══════════ DEVELOPER ══════════ -->
 <section id="pg-developer" class="pg">
   <div class="dev-wrap">
-
     <div class="dev-av-wrap">
-      <div class="dev-ring"></div><div class="dev-ring dev-ring2"></div>
       <div class="dev-av-border">
         <div class="dev-av">
-          <svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="60" fill="url(#dvg)"/><circle cx="60" cy="47" r="21" fill="rgba(255,255,255,.92)"/><ellipse cx="60" cy="96" rx="33" ry="23" fill="rgba(255,255,255,.92)"/><defs><linearGradient id="dvg" x1="0" y1="0" x2="120" y2="120"><stop stop-color="#7C3AED"/><stop offset="1" stop-color="#DB2777"/></linearGradient></defs></svg>
+          <svg viewBox="0 0 60 60" fill="none" style="width:100%;height:100%"><rect width="60" height="60" fill="#1a1a2e"/><path d="M30 28a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 48c0-9.94 8.06-18 18-18s18 8.06 18 18" stroke="url(#davg)" stroke-width="2.5" stroke-linecap="round"/><defs><linearGradient id="davg" x1="12" y1="10" x2="48" y2="48"><stop stop-color="#7C3AED"/><stop offset="1" stop-color="#DB2777"/></linearGradient></defs></svg>
         </div>
       </div>
+      <div class="dev-ring"></div>
+      <div class="dev-ring dev-ring2"></div>
     </div>
-
     <div class="dev-name-row">
-      <h2 class="dev-name">Kenz Chillz</h2>
-      <span class="dev-badge">
-        <svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="11" fill="#1D9BF0"/><path d="M6.5 11.5l3 3 6-6.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </span>
+      <h2 class="dev-name">Developer</h2>
+      <div class="dev-badge"><svg viewBox="0 0 24 24" fill="#7C3AED"><path d="M12 2L13.09 8.26L20 9.27L15 14.14L16.18 21.02L12 17.77L7.82 21.02L9 14.14L4 9.27L10.91 8.26L12 2z"/></svg></div>
     </div>
-    <p class="dev-role">Creator &amp; Developer</p>
-    <p class="dev-desc">Platform streaming musik modern gratis tanpa iklan. Nikmati jutaan lagu, buat playlist, dan temukan musik baru setiap hari dengan kualitas premium.</p>
-
+    <p class="dev-role">Kenz Forum V2</p>
+    <p class="dev-desc">Platform streaming musik premium dengan smart search berbasis lirik. Spotify + YouTube Music experience.</p>
     <div class="dev-stats">
-      <div class="dev-stat"><span class="dsn">∞</span><span class="dsl">Lagu</span></div>
+      <div class="dev-stat"><span class="dsn">V2</span><span class="dsl">Versi</span></div>
       <div class="stat-div"></div>
-      <div class="dev-stat"><span class="dsn">0</span><span class="dsl">Iklan</span></div>
+      <div class="dev-stat"><span class="dsn">YT</span><span class="dsl">Engine</span></div>
       <div class="stat-div"></div>
-      <div class="dev-stat"><span class="dsn">100%</span><span class="dsl">Gratis</span></div>
+      <div class="dev-stat"><span class="dsn">LRC</span><span class="dsl">Lyrics</span></div>
     </div>
-
-    <!-- Social icons only — no text -->
-    <div class="dev-socials">
-      <button class="soc-btn tiktok" onclick="window.open('https://www.tiktok.com/@kenzchill7','_blank')" aria-label="TikTok">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.37 6.37 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.75a8.19 8.19 0 004.77 1.52V6.79a4.86 4.86 0 01-1-.1z"/></svg>
-      </button>
-      <button class="soc-btn whatsapp" onclick="window.open('https://wa.me/6282357961890','_blank')" aria-label="WhatsApp">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      </button>
-    </div>
-
-    <div class="dev-donate-wrap">
-      <p class="donate-label">☕ Dukung Developer</p>
-      <button class="saweria-btn" onclick="window.open('https://saweria.co/KenzChillz','_blank')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-        Saweria — KenzChillz
-      </button>
-    </div>
-
-    <div class="dev-install-card" id="dev-install">
-      <div class="inst-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
-      <div class="inst-info"><h4>Install Aplikasi</h4><p>Akses cepat dari homescreen</p></div>
+    <div class="dev-install-card">
+      <div class="inst-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+      <div class="inst-info"><h4>Install Aplikasi</h4><p>Akses lebih cepat, mode offline</p></div>
       <button class="inst-btn" id="pwa-install">Install</button>
     </div>
-
-    <div class="dev-footer"><p>SoundWave v4.0</p><p>Made with ♥ by Kenz Chillz</p></div>
+    <p class="dev-footer">SoundWave V2 · Smart Lyrics Search<br/>Built with ❤️ Vanilla JS + Node.js</p>
   </div>
 </section>
 
-</main>
+</main><!-- /main -->
 
-<!-- ══════ SONG DETAIL SHEET ══════ -->
-<div id="detail-sheet" class="sheet hidden">
+<!-- ── MINI PLAYER ── -->
+<div class="mini-player hidden" id="mini-player">
+  <div class="mp-prog"><div class="mp-fill" id="mp-fill"></div></div>
+  <div class="mp-body" id="mp-open">
+    <img class="mp-thumb" id="mp-thumb" src="" alt=""/>
+    <div class="mp-info">
+      <div class="mp-title" id="mp-title"></div>
+      <div class="mp-artist" id="mp-artist"></div>
+    </div>
+    <div class="mp-ctrls">
+      <div class="mp-loader hidden" id="mp-loader">
+        <div class="buf-spin" style="width:22px;height:22px;border-width:2px"></div>
+      </div>
+      <button class="mp-btn" id="mp-pp" aria-label="Play/Pause">
+        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg>
+      </button>
+      <button class="mp-btn" id="mp-next" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 4 15 12 5 20"/><line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ── FULL PLAYER ── -->
+<div class="fp hidden" id="full-player">
+  <div class="fp-bg" id="fp-bg"></div>
+  <div class="fp-scrim"></div>
+  <div class="fp-body">
+    <div class="fp-topbar">
+      <button class="fp-topbtn" id="fp-down" aria-label="Tutup">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <span class="fp-label">Sedang Diputar</span>
+      <button class="fp-topbtn" id="fp-detail-open" aria-label="Detail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1" fill="currentColor"/><circle cx="12" cy="12" r="1" fill="currentColor"/><circle cx="12" cy="19" r="1" fill="currentColor"/></svg>
+      </button>
+    </div>
+
+    <div class="fp-art-area">
+      <div class="fp-glow" id="fp-glow"></div>
+      <div class="fp-art-frame">
+        <img class="fp-art" id="fp-art" src="" alt=""/>
+        <div class="fp-bufring hidden" id="fp-buf"><div class="buf-spin"></div></div>
+      </div>
+    </div>
+
+    <div class="fp-info">
+      <div class="fp-info-row">
+        <div class="fp-info-text">
+          <div class="fp-title" id="fp-title"></div>
+          <div class="fp-artist" id="fp-artist"></div>
+        </div>
+        <button class="fp-like" id="fp-like" aria-label="Like">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="fp-seek-wrap">
+      <input class="fp-seek" id="fp-seek" type="range" min="0" max="100" value="0" step="0.1"/>
+      <div class="fp-times"><span id="fp-cur">0:00</span><span id="fp-dur">0:00</span></div>
+    </div>
+
+    <!-- Lyrics strip -->
+    <div class="fp-lyrics">
+      <div class="fp-lyric-line" id="fp-lyric-cur"></div>
+      <div class="fp-lyric-next" id="fp-lyric-next"></div>
+    </div>
+
+    <div class="fp-controls">
+      <button class="fpc" id="fpc-shuffle" aria-label="Shuffle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+      </button>
+      <button class="fpc" id="fpc-prev" aria-label="Sebelumnya">
+        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="19 20 9 12 19 4"/><line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" stroke-width="2"/></svg>
+      </button>
+      <button class="fpc fpc-play" id="fpc-play" aria-label="Play/Pause">
+        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg>
+      </button>
+      <button class="fpc" id="fpc-next" aria-label="Selanjutnya">
+        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 4 15 12 5 20"/><line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2"/></svg>
+      </button>
+      <button class="fpc" id="fpc-repeat" aria-label="Ulang">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ── DETAIL SHEET ── -->
+<div class="sheet hidden" id="detail-sheet">
   <div class="sheet-inner">
     <button class="sheet-close" id="detail-close">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <div class="detail-header">
-      <img id="detail-thumb" class="detail-thumb" src="" alt=""/>
+      <img class="detail-thumb" id="detail-thumb" src="" alt=""/>
       <div class="detail-meta">
-        <h3 class="detail-title" id="detail-title"></h3>
-        <p class="detail-artist" id="detail-artist"></p>
-        <p class="detail-info" id="detail-info"></p>
+        <div class="detail-title" id="detail-title"></div>
+        <div class="detail-artist" id="detail-artist"></div>
+        <div class="detail-info" id="detail-info"></div>
         <div class="detail-actions">
           <button class="detail-play-btn" id="detail-play">
-            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg>Putar
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg> Putar
           </button>
           <button class="detail-like" id="detail-like">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
@@ -282,162 +367,74 @@
         </div>
       </div>
     </div>
-    <!-- Lyrics -->
     <div class="detail-tabs">
       <button class="dtab active" data-dtab="lyrics">Lirik</button>
       <button class="dtab" data-dtab="related">Terkait</button>
     </div>
     <div id="dtab-lyrics" class="dtab-panel active">
-      <div id="lyrics-container" class="lyrics-container">
-        <div class="lyrics-empty" id="lyrics-empty">
-          <div class="spin-ring"></div>
-          <p>Memuat lirik...</p>
-        </div>
-      </div>
+      <div class="lyrics-container" id="lyrics-container"></div>
     </div>
     <div id="dtab-related" class="dtab-panel">
       <div id="related-list" class="song-list"></div>
     </div>
   </div>
 </div>
-<div id="detail-backdrop" class="backdrop hidden"></div>
+<div class="backdrop hidden" id="detail-backdrop"></div>
 
-<!-- ══════ MINI PLAYER ══════ -->
-<div id="mini-player" class="mini-player hidden">
-  <div class="mp-prog"><div id="mp-fill" class="mp-fill"></div></div>
-  <div class="mp-body" id="mp-open">
-    <img id="mp-thumb" class="mp-thumb" src="" alt=""/>
-    <div class="mp-info">
-      <p class="mp-title" id="mp-title">Tidak ada lagu</p>
-      <p class="mp-artist" id="mp-artist"></p>
-    </div>
-    <div class="mp-ctrls">
-      <div id="mp-loader" class="mp-loader hidden"><div class="spin-ring"></div></div>
-      <button class="mp-btn" id="mp-pp">
-        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg>
-      </button>
-      <button class="mp-btn" id="mp-next">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 4 15 12 5 20"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- ══════ FULL PLAYER ══════ -->
-<div id="full-player" class="fp hidden">
-  <div class="fp-bg" id="fp-bg"></div>
-  <div class="fp-scrim"></div>
-  <div class="fp-body">
-
-    <div class="fp-topbar">
-      <button class="fp-topbtn" id="fp-down">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="18 15 12 9 6 15"/></svg>
-      </button>
-      <span class="fp-label">Sedang Diputar</span>
-      <button class="fp-topbtn" id="fp-detail-open">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="5" r="1" fill="currentColor"/><circle cx="12" cy="12" r="1" fill="currentColor"/><circle cx="12" cy="19" r="1" fill="currentColor"/></svg>
-      </button>
-    </div>
-
-    <div class="fp-art-area">
-      <div class="fp-glow" id="fp-glow"></div>
-      <div class="fp-art-frame">
-        <img id="fp-art" class="fp-art" src="" alt=""/>
-        <div class="fp-bufring hidden" id="fp-buf"><div class="buf-spin"></div></div>
-      </div>
-    </div>
-
-    <div class="fp-info">
-      <div class="fp-info-row">
-        <div class="fp-info-text">
-          <h2 class="fp-title" id="fp-title">Tidak ada lagu</h2>
-          <p class="fp-artist" id="fp-artist"></p>
-        </div>
-        <button class="fp-like" id="fp-like">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        </button>
-      </div>
-    </div>
-
-    <div class="fp-seek-wrap">
-      <input type="range" id="fp-seek" class="fp-seek" value="0" min="0" max="100" step="0.1"/>
-      <div class="fp-times"><span id="fp-cur">0:00</span><span id="fp-dur">0:00</span></div>
-    </div>
-
-    <div class="fp-controls">
-      <button class="fpc" id="fpc-shuffle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg></button>
-      <button class="fpc" id="fpc-prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="19 20 9 12 19 4"/><line x1="5" y1="19" x2="5" y2="5"/></svg></button>
-      <button class="fpc fpc-play" id="fpc-play"><svg id="fpc-play-svg" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg></button>
-      <button class="fpc" id="fpc-next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 4 15 12 5 20"/><line x1="19" y1="5" x2="19" y2="19"/></svg></button>
-      <button class="fpc" id="fpc-repeat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></button>
-    </div>
-
-    <!-- Lyrics strip in full player -->
-    <div class="fp-lyrics" id="fp-lyrics-strip">
-      <div class="fp-lyric-line" id="fp-lyric-cur"></div>
-      <div class="fp-lyric-next" id="fp-lyric-next"></div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ══════ BOTTOM NAV ══════ -->
+<!-- ── BOTTOM NAV ── -->
 <nav id="bottom-nav">
   <button class="nb active" data-pg="home">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-    <span>Beranda</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Beranda
   </button>
   <button class="nb" data-pg="search">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <span>Mencari</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    Mencari
   </button>
   <button class="nb" data-pg="library">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-    <span>Pustaka</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+    Pustaka
   </button>
   <button class="nb" data-pg="developer">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-    <span>Pengembang</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    Developer
   </button>
 </nav>
 
-<!-- Floating donate -->
-<button class="float-donate" onclick="window.open('https://saweria.co/KenzChillz','_blank')" title="Saweria">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>
-</button>
-
-<div id="toast-root"></div>
-
-<!-- Playlist modal -->
-<div id="pl-modal" class="modal hidden">
+<!-- ── PLAYLIST MODAL ── -->
+<div class="modal hidden" id="pl-modal">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
-    <h3 class="modal-title">Tambah ke Playlist</h3>
-    <div id="pl-modal-list" class="modal-list"></div>
-    <button class="modal-new-btn" id="pl-modal-new"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Playlist Baru</button>
+    <div class="modal-title">Tambah ke Playlist</div>
+    <div class="modal-list" id="pl-modal-list"></div>
+    <button class="modal-new-btn" id="pl-modal-new">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      Buat Playlist Baru
+    </button>
     <button class="modal-cancel" id="pl-modal-cancel">Batal</button>
   </div>
 </div>
 
-<!-- Input modal -->
-<div id="input-modal" class="modal hidden">
+<!-- ── INPUT MODAL ── -->
+<div class="modal hidden" id="input-modal">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
-    <h3 class="modal-title" id="input-modal-title">Nama Playlist</h3>
-    <input id="input-modal-field" type="text" class="modal-input" placeholder="Masukkan nama..." maxlength="50"/>
+    <div class="modal-title" id="input-modal-title"></div>
+    <input class="modal-input" id="input-modal-field" type="text" placeholder="Nama..."/>
     <div class="modal-acts">
-      <button class="modal-cancel" id="input-cancel">Batal</button>
+      <button class="modal-cancel" id="input-cancel" style="flex:1;padding:11px;font-size:.86rem">Batal</button>
       <button class="modal-ok" id="input-ok">Simpan</button>
     </div>
   </div>
 </div>
 
-<!-- YouTube IFrame (hidden, global singleton) -->
-<div id="yt-container" style="position:fixed;width:1px;height:1px;opacity:0;pointer-events:none;bottom:0;left:0;z-index:-1">
-  <div id="yt-player"></div>
-</div>
+<!-- ── TOAST ROOT ── -->
+<div id="toast-root"></div>
 
-</div><!-- #app -->
-<script src="/script.js"></script>
+<!-- ── YOUTUBE IFRAME ── -->
+<div id="yt-player" style="position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;pointer-events:none;opacity:0" aria-hidden="true"></div>
+
+</div><!-- /app -->
+<script src="/script.js" defer></script>
 </body>
 </html>
